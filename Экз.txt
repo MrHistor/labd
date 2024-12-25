@@ -1,0 +1,36 @@
+Настроить IP
+
+Отключение admin:
+use add name=mkt password=P@S#w0Rd group=full
+quit
+user disable admin
+#user print
+
+Настройка интерфейсов:
+interface print
+interface enable 0
+ip address add address=192.168.1.116/24 interface=ether1
+#ip address print
+#ip address remove numbers=0
+#ip route add gateway=192.168.1.249
+#ip route print
+
+NAT:
+OUT: ip firewall nat add chain=srcnat action=masquerade out-interface=!ether2
+#IN: ip firewall nat add chain=dstnat dst-address=192.168.20.0/24 protocol=tcp dst-port=80 action=dst-nat to-addresses=192.168.21.1 to-ports=80 comment="NAT for http"
+#route dst:192.168.21.0/24 gatew:192.168.20.2 type:unicast
+#ip firewall filter add chain=forward protocol=udp action=accept comment="Allow UDP"
+#ip firewall filter add chain=forward src-address=192.168.0.20/32 protocol=tcp dst-port=80 action=accept comment="Allow http for pc1 (out)"
+#ip firewall filter add chain=forward action=drop comment="Drop all"
+
+
+/28
+255.255.255.240
+10.10.20.0
+10.10.20.15
+10.10.20.1-14
+
+Установка Windows Server в ESXI:
+Добавляем ISO через ESXi, исошник лежит в папке ISO на сетевой папке. После создаем виртуалку и подключаем исошник. ВАЖНО! Без этого не запускается установщик и постоянно отключает исошник. В параметрах виртуалки поменять EFI на BIOS. Только после этого сервак начал устанавливаться
+
+Скрыть сетевую папку: $ в конце
